@@ -1,10 +1,10 @@
 const Login = () => {
     return (
         <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-            <div className="h-full w-full bg-white/30 rounded-md p-4 backdrop-filter backdrop-blur-lg bg-opacity-4">
+            <div className="h-full w-full bg-blue-300 rounded-md p-4 ">
                 <div>
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                        <h2 className=" text-blue-800 mt-4 text-center text-3xl font-extrabold leading-9 tracking-tight">
+                        <h2 className=" text-violet-900 mt-4 text-center text-3xl font-extrabold leading-9 tracking-tight">
                             Chat App
                         </h2>
                         <h2 className=" mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -15,19 +15,20 @@ const Login = () => {
                         <form className="space-y-6" action="#" method="POST">
                             <div>
                                 <label
-                                    htmlFor="email"
+                                    htmlFor="username"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    Email address
+                                    Username
                                 </label>
                                 <div className="mt-2">
                                     <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        autoComplete="email"
+                                        id="username"
+                                        name="username"
+                                        type="text"
+                                        autoComplete="username"
                                         required
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                                        placeholder="Username"
+                                        className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
@@ -47,7 +48,8 @@ const Login = () => {
                                         type="password"
                                         autoComplete="current-password"
                                         required
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
+                                        placeholder="Password"
+                                        className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
@@ -63,9 +65,9 @@ const Login = () => {
                         <p className="mt-8 text-center">
                             <a
                                 href="#"
-                                className="font-semibold text-lg leading-6 text-gray-900 hover:text-gray-800"
+                                className="font-semibold text-sm leading-6 text-gray-900 hover:text-gray-800"
                             >
-                                {"Dont't have a acount?"}
+                                {"Dont't have a account?"}
                             </a>
                         </p>
                     </div>

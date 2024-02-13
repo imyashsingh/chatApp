@@ -1,7 +1,26 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import useSignup from "../../hooks/useSignup";
+
 const SignUp = () => {
+    const [inputs, setInputs] = useState({
+        fullName: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+        gender: "",
+    });
+
+    const { signup, loading } = useSignup();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await signup(inputs);
+    };
+
     return (
         <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-            <div className="h-full w-full bg-blue-300 rounded-md p-4  ">
+            <div className="h-full w-full bg-indigo-400 rounded-md p-4  ">
                 <div>
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                         <h2 className=" text-violet-900 mt-4 text-center text-3xl font-extrabold leading-9 tracking-tight">
@@ -12,7 +31,7 @@ const SignUp = () => {
                         </h2>
                     </div>
                     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                        <form className="space-y-6" action="#" method="POST">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
                                 <label
                                     htmlFor="fullName"
@@ -28,6 +47,13 @@ const SignUp = () => {
                                         autoComplete="fullName"
                                         required
                                         placeholder="fullName"
+                                        value={inputs.fullName}
+                                        onChange={(e) =>
+                                            setInputs({
+                                                ...inputs,
+                                                fullName: e.target.value,
+                                            })
+                                        }
                                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -47,6 +73,13 @@ const SignUp = () => {
                                         autoComplete="username"
                                         required
                                         placeholder="Username"
+                                        value={inputs.username}
+                                        onChange={(e) =>
+                                            setInputs({
+                                                ...inputs,
+                                                username: e.target.value,
+                                            })
+                                        }
                                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -68,6 +101,13 @@ const SignUp = () => {
                                         autoComplete="current-password"
                                         required
                                         placeholder="password"
+                                        value={inputs.password}
+                                        onChange={(e) =>
+                                            setInputs({
+                                                ...inputs,
+                                                password: e.target.value,
+                                            })
+                                        }
                                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -89,6 +129,13 @@ const SignUp = () => {
                                         autoComplete="confirm-password"
                                         placeholder="Confirm Password"
                                         required
+                                        value={inputs.confirmPassword}
+                                        onChange={(e) =>
+                                            setInputs({
+                                                ...inputs,
+                                                confirmPassword: e.target.value,
+                                            })
+                                        }
                                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -103,9 +150,16 @@ const SignUp = () => {
                                     <input
                                         type="radio"
                                         id="male"
-                                        name="gender"
                                         value="male"
+                                        name="gender"
                                         required
+                                        onChange={(e) =>
+                                            setInputs({
+                                                ...inputs,
+                                                gender: e.target.value,
+                                            })
+                                        }
+                                        checked={inputs.gender == "male"}
                                         className="align-middle scale-125 cursor-pointer"
                                     />
                                 </label>
@@ -118,8 +172,15 @@ const SignUp = () => {
                                     <input
                                         type="radio"
                                         id="female"
-                                        name="gender"
                                         value="female"
+                                        name="gender"
+                                        onChange={(e) =>
+                                            setInputs({
+                                                ...inputs,
+                                                gender: e.target.value,
+                                            })
+                                        }
+                                        checked={inputs.gender == "female"}
                                         className="align-middle scale-125 cursor-pointer rounded-sm"
                                     />
                                 </label>
@@ -128,19 +189,20 @@ const SignUp = () => {
                             <div>
                                 <button
                                     type="submit"
+                                    disabled={loading}
                                     className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700"
                                 >
-                                    Sign Up
+                                    {loading ? "Loading..." : "Sign Up"}
                                 </button>
                             </div>
                         </form>
                         <p className="mt-8 text-center">
-                            <a
-                                href="#"
+                            <Link
+                                to="/login"
                                 className="font-semibold text-sm leading-6 text-gray-900 hover:text-gray-700"
                             >
                                 I already have a account
-                            </a>
+                            </Link>
                         </p>
                     </div>
                 </div>

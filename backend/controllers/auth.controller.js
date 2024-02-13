@@ -12,21 +12,23 @@ export const signupUser = async (req, res) => {
         //if password length is less than 5
         if (!password || password?.length < 4) {
             res.status(400).json({
-                message: "Password length Should be more than 4",
+                error: "Password length Should be more than 4",
             });
         }
 
         //if password are not same
         if (password !== confirmPassword) {
-            res.status(400).json({ message: "Password Don't Match" });
+            res.status(400).json({ error: "Password Don't Match" });
         }
 
         //finding user
         const existinguser = await UserModel.findOne({ username });
 
         //  throw error if user already exist
+
         if (existinguser) {
-            res.status(400).json({ message: "Username already Exist" });
+            console.log(existinguser);
+            res.status(400).json({ error: "Username already Exist" });
         }
 
         //hashpassword
@@ -65,7 +67,7 @@ export const signupUser = async (req, res) => {
         });
     } catch (error) {
         console.log("Error in Signup Controller", error.message);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
@@ -84,7 +86,7 @@ export const loginUser = async (req, res) => {
 
         //if user not found or password not match
         if (!user || !isPasswordCorrect) {
-            res.status(400).json({ message: "Please Enter Valid Credentials" });
+            res.status(400).json({ error: "Please Enter Valid Credentials" });
         }
 
         // generating JWT token and seting cookies
@@ -102,7 +104,7 @@ export const loginUser = async (req, res) => {
         });
     } catch (error) {
         console.log("Error in Login Controller", error.message);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
@@ -113,6 +115,6 @@ export const logoutUser = async (_, res) => {
         res.status(200).json({ message: "Logout Sucessfully" });
     } catch (error) {
         console.log("Error in Logout Controller", error.message);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };

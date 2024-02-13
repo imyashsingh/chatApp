@@ -7,7 +7,7 @@ const protectRoute = async (req, res, next) => {
 
         if (!token) {
             res.status(401).json({
-                message: "Unauthorized : No Token Provided",
+                error: "Unauthorized : No Token Provided",
             });
         }
 
@@ -15,7 +15,7 @@ const protectRoute = async (req, res, next) => {
 
         if (!decoded) {
             res.status(401).json({
-                message: "Unauthorized : No Token Provided",
+                error: "Unauthorized : No Token Provided",
             });
         }
 
@@ -25,7 +25,7 @@ const protectRoute = async (req, res, next) => {
 
         if (!user) {
             res.status(401).json({
-                message: "User Not Found",
+                error: "User Not Found",
             });
         }
 
@@ -34,7 +34,7 @@ const protectRoute = async (req, res, next) => {
         next();
     } catch (error) {
         console.log("Error in ProtectRoute Middleware", error.message);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 

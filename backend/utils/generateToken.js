@@ -14,7 +14,7 @@ export const generateTokenAndSetCookies = async (userId, res) => {
         });
     } catch (error) {
         res.status(400).json({
-            message: "Error while Genetating JWT Token",
+            error: "Error while Genetating JWT Token",
         });
     }
 };

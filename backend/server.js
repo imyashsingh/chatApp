@@ -21,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
+//connect to DB
+connectToMongoDB();
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", usersRoutes);
@@ -28,9 +31,9 @@ app.use("/api/users", usersRoutes);
 //---------------------------------------------------DEPLOYMENT--------------------------
 const __dirname = path.resolve();
 
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-app.get("*", (_, res) => {
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
@@ -41,7 +44,5 @@ const PORT = process.env.PORT || 5000;
 
 //App listen
 server.listen(PORT, async () => {
-    //connect to DB
-    connectToMongoDB();
     console.log(`Server Runnig On PORT=${PORT}`);
 });

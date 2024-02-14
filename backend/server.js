@@ -4,25 +4,24 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import path from "path";
 
+import connectToMongoDB from "./db/connectToMongoDb.js";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import usersRoutes from "./routes/users.routes.js";
-
-import connectToMongoDB from "./db/connectToMongoDb.js";
 
 import { app, server } from "./socket/socket.js";
 
 //env config
 dotenv.config();
 
+//connect to DB
+connectToMongoDB();
+
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
-
-//connect to DB
-connectToMongoDB();
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);

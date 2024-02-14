@@ -4,7 +4,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import path from "path";
 
-import connectToMongoDB from "./db/connectToMongoDb.js";
+import connectToMongoDB from "./db/connectToMongoDB.js";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import usersRoutes from "./routes/users.routes.js";

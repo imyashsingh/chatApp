@@ -21,9 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
-//connect to DB
-connectToMongoDB();
-
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", usersRoutes);
@@ -43,6 +40,8 @@ app.get("*", (_, res) => {
 const PORT = process.env.PORT || 5000;
 
 //App listen
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
+    //connect to DB
+    connectToMongoDB();
     console.log(`Server Runnig On PORT=${PORT}`);
 });

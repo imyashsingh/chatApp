@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import notificationSound from "../assets/sounds/notification.mp3";
 import { useSocketContext } from "../context/SocketContext";
 import { useSelectedConversationContext } from "../context/SelectedConversationContext";
+import toast from "react-hot-toast";
 
 const useListenMessages = () => {
     const { socket } = useSocketContext();
@@ -12,9 +13,9 @@ const useListenMessages = () => {
     useEffect(() => {
         socket?.on("newMessage", (newMessage) => {
             const sound = new Audio(notificationSound);
-
+            sound.play();
+            toast.success("New Message Received");
             if (selectedConversation?._id === newMessage?.senderId) {
-                sound.play();
                 setMessages([...messages, newMessage]);
             }
         });

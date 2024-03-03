@@ -14,7 +14,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
+        <div className="flex flex-col items-center justify-center min-w-96 mx-auto text-black">
             <div className="h-full w-full bg-indigo-400 rounded-md p-4 ">
                 <div>
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -95,6 +95,8 @@ const Login = () => {
                         </p>
                     </div>
                 </div>
+                <p>usermane= test | password=12345</p>
+                <p>usermane= testuser | password=12345</p>
             </div>
         </div>
     );
